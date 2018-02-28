@@ -1,0 +1,401 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400');
+
+body,
+figure,
+h1,
+h2,
+h3,
+ul {
+	margin: 0;
+}
+
+body {
+	font-family: Roboto;
+}
+
+a {
+	color: #000;
+	text-decoration: none;
+}
+
+ul {
+	padding: 0;
+	list-style: none;
+}
+
+input {
+	padding: 0;
+	border: none;
+	outline: none;
+	color: inherit;
+	font: inherit;
+	background: transparent;
+}
+
+/* Header */
+#header,
+footer {
+	padding: .5rem 10rem;
+}
+
+@media (max-width: 769px) {
+	#header,
+	footer {
+		padding: .5rem .5rem;
+	}
+}
+
+#header {
+	display: flex;
+	justify-content: space-between;
+	z-index: 1;
+}
+
+#header-basket {
+	position: relative;
+	width: 2rem;
+	height: 2rem;
+	background: url(images/basket.png) 50% / cover;
+	z-index: 2;
+}
+
+#header-location {
+	height: 1.75rem;
+}
+
+#header-basket:not(.open-basket) > #basket {
+	visibility: hidden;
+	opacity: 0;
+}
+#basket {
+	position: absolute;
+	left: -6.5rem;
+	margin-top: 3rem;
+	width: 15rem;
+	height: 30rem;
+	border-radius: 1rem;
+	background-color: #f5f5f5;
+	z-index: 1;
+}
+#basket::before {
+	position: relative;
+	top: -2rem;
+	display: block;
+	margin: 0 auto;
+	width: 0;
+	border: 1rem solid transparent;
+	border-bottom-color: #f5f5f5;
+	content: "";
+}
+#basket > h2,
+ #basket > ul::before {
+	padding-left: 1.5rem;
+	font-weight: 300;
+}
+
+#basket > ul:empty::before {
+	content: "Koszyk jest pusty";
+}
+
+/* Main container */
+.section {
+	min-height: 85vh;
+}
+
+#section-foods,
+#section-status {
+	animation: .8s fadein;
+}
+
+body:not(.page-landing) > #section-landing,
+body:not(.page-foods) > #section-foods {
+	display: none;
+}
+body:not(.page-status) > #section-status {
+	visibility: hidden;
+}
+
+/* Landing section */
+#section-landing {
+	position: relative;
+	height: 85vh;
+	background: url(images/food/desser_p_b.jpg) 100% / cover;
+	box-shadow: inset 0px 0px 1px 0px rgba(0, 0, 0, 0.75);
+}
+
+#section-landing::before,
+#section-landing::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	animation: 10s slideshow infinite;
+}
+#section-landing::before {
+	animation-delay: 3.3s;
+	background: url(images/food/klp.jpg) 100% / cover;
+}
+#section-landing::after {
+	animation-delay: 6.7s;
+	background: url(images/food/food.jpg) 100% / cover;
+}
+
+/* Localization picker */
+#localization-picker {
+	position: relative;
+	top: 40%;
+	margin-left: auto;
+	margin-right: auto;
+	width: 16rem;
+	border-radius: 1rem;
+	font-weight: 300;
+	background-color: #fff;
+	z-index: 1;
+	box-shadow: 0 49.5px 70px -10px rgba(0, 0, 0, .3);
+}
+
+#localization-picker-detect,
+#localization-picker-direct {
+	height: 2.8rem;
+	padding: .25rem .5rem;
+	line-height: 2.8rem;
+	font-size: 1.2rem;
+}
+
+#localization-picker-detect {
+	display: block;
+	text-align: center;
+	border-bottom: .0625rem solid #eaeaea;
+}
+
+#localization-picker-direct {
+	box-sizing: border-box;
+	width: 100%;
+}
+
+#localization-picker-results {
+	height: 8rem;
+	overflow-y: auto;
+	margin-top: 1rem;
+	position: absolute;
+	border-radius: .125rem;
+	background-color: #fff;
+}
+
+#localization-picker-direct:invalid + #localization-picker-results {
+	display: none;
+}
+
+#localization-picker-results > a {
+	width: 100%;
+	display: block;
+	font-size: 1rem;
+	cursor: pointer;
+}
+
+#localization-picker-results > a:hover {
+	opacity: .4;
+}
+
+/* Foods section */
+#section-foods {
+	transition: .8s transform;
+}
+body:not(.page-foods) > #section-foods {
+	transform: translate3d(0, 100%, 0);
+}
+
+#section-foods > nav {
+	position: relative;
+	font-size: 2rem;
+	margin-left: auto;
+	margin-right: auto;
+	display: flex;
+	justify-content: center;
+}
+
+.section-foods-products > nav::after {
+	width: 7.875rem;
+	transform: translate3d(-5.68rem, 0, 0)
+}
+.section-foods-restaurants > nav::after {
+	width: 10.5rem;
+	transform: translate3d(4.6rem, 0, 0);
+}
+
+#section-foods > nav::after {
+	display: block;
+	content: "";
+	height: .125rem;
+	background-color: #91c191;
+	bottom: -.25rem;
+	position: absolute;
+	transition: .3s transform, .3s width;
+}
+
+#section-foods > nav > a {
+	margin-left: .5rem;
+	margin-right: .5rem;
+	padding-top: .25rem;
+}
+
+#section-foods-articles {
+	display: flex;
+	padding: .5rem;
+	flex-wrap: wrap;
+	justify-content: center;
+	max-height: 7rem;
+}
+
+#section-foods-articles > article {
+	position: relative;
+	margin: 1.2rem;
+	width: 16rem;
+	height: 12rem;
+	cursor: pointer;
+}
+
+.section-foods-restaurants #section-foods-articles > article {
+	animation: .3s slideout forwards;
+}
+
+#section-foods-articles > article:hover {
+	z-index: 1;
+	box-shadow: 0 49.5px 70px -24.5px rgba(0, 0, 0, .3);
+}
+
+.section-foods-restaurants article:nth-child(2) {animation-delay: .04s !important}
+.section-foods-restaurants article:nth-child(3) {animation-delay: .08s !important}
+.section-foods-restaurants article:nth-child(4) {animation-delay: .12s !important}
+.section-foods-restaurants article:nth-child(5) {animation-delay: .16s !important}
+.section-foods-restaurants article:nth-child(6) {animation-delay: .2s !important}
+.section-foods-restaurants article:nth-child(7) {animation-delay: .24s !important}
+.section-foods-restaurants article:nth-child(8) {animation-delay: .28s !important}
+.section-foods-restaurants article:nth-child(9) {animation-delay: .32s !important}
+.section-foods-restaurants article:nth-child(10) {animation-delay: .36s !important}
+.section-foods-restaurants article:nth-child(11) {animation-delay: .4s !important}
+.section-foods-restaurants article:nth-child(12) {animation-delay: .44s !important}
+.section-foods-restaurants article:nth-child(13) {animation-delay: .48s !important}
+.section-foods-restaurants article:nth-child(14) {animation-delay: .52s !important}
+.section-foods-restaurants article:nth-child(15) {animation-delay: .56s !important}
+.section-foods-restaurants article:nth-child(16) {animation-delay: .6s !important}
+.section-foods-restaurants article:nth-child(17) {animation-delay: .64s !important}
+.section-foods-restaurants article:nth-child(18) {animation-delay: .68s !important}
+.section-foods-restaurants article:nth-child(19) {animation-delay: .72s !important}
+.section-foods-restaurants article:nth-child(20) {animation-delay: .76s !important}
+.section-foods-restaurants article:nth-child(21) {animation-delay: .8s !important}
+.section-foods-restaurants article:nth-child(22) {animation-delay: .84s !important}
+.section-foods-restaurants article:nth-child(23) {animation-delay: .88s !important}
+.section-foods-restaurants article:nth-child(24) {animation-delay: .92s !important}
+.section-foods-restaurants article:nth-child(25) {animation-delay: .96s !important}
+
+#section-foods-articles > article > img {
+	width: 100%;
+	height: 100%;
+}
+
+#section-foods-articles > article > header {
+	position: absolute;
+	padding: .5rem 1rem;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: rgba(255,255,255,.5);
+}
+
+/* Order status section */
+#map {
+	height: 85vh;
+}
+
+/* Footer */
+footer {
+	z-index: 1;
+}
+
+@keyframes fadein {
+	from {
+		opacity: 0;
+	}
+}
+
+@keyframes slideout {
+	to {
+		transform: translate3d(-100%, 0, 0);
+		opacity: 0;
+	}
+}
+
+@keyframes slideshow {
+	17%  {
+		opacity: 1;
+	}
+	33% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
+/* Product overlay */
+#product-overlay {
+	width: 25rem;
+	height: 30rem;
+	background-color: rgba(240, 240, 240, 0.85);
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	z-index: 1;
+	border-radius: .125rem;
+	box-shadow: 0 49.5px 70px -10px rgba(0, 0, 0, .3);
+	transition: .3s all;
+}
+
+.overlay > *:not(#product-overlay) {
+	filter: contrast(30%);
+}
+
+:not(.overlay) > #product-overlay {
+	opacity: 0;
+	transform: translate3d(0, calc(50vh + 50%), 0);
+}
+
+#product-overlay-image {
+	display: block;
+	width: 100%;
+}
+
+#product-overlay > h3,
+#product-overlay > span {
+	padding: .5rem;
+}
+
+#product-cancel,
+#product-add {
+	position: absolute;
+	bottom: 1rem;
+}
+
+#product-cancel {
+	left: 1.5rem;
+	color: #f10000;
+}
+#product-add {
+	right: 1.5rem;
+}
+
+#basket > h2 {
+	margin-bottom: .5rem; 
+}
+
+#basket > ul {
+	font-weight: 400;
+	font-size: .85rem;
+	padding-left: .5rem;
+}

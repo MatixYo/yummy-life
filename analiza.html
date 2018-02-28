@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset=utf-8>
+        <title>Droniada App</title>
+        <meta name=viewport content="width=device-width, user-scalable=no">
+        <link rel=stylesheet href=//unpkg.com/leaflet@1.0.3/dist/leaflet.css>
+        <style>
+            body {
+                margin: 0;
+            }
+            #map {
+                height: 100vh;
+            }
+        </style>
+    </head>
+    <body>
+        <div id=map></div>
+        <script src=//unpkg.com/leaflet@1.0.3/dist/leaflet.js></script>
+        <script>
+            const map = L.map('map', {
+    center: [50.116543199999995, 22.017420200000004],
+    zoom: 13
+});
+            L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(map);
+            const colors = ['#0f0', '#0ff', '#f0f', '#f00', '#ff0', '#000', '#fff', '#00f']
+            
+            fetch('analiza.json').then(response => response.json()).then(data => {
+                let i = 0;
+                for(let key in data) {
+                    //let color = '#'+(0x1000000+(Math.random())*0xffffff).toString(16).substr(1,6);
+                    let color = colors[i++];
+                    data[key].forEach(coords => L.circle([coords[1], coords[0]], 40, {stroke: false, fillColor: color}).addTo(map));
+                }
+            });
+        </script>
+    </body>
+</html>

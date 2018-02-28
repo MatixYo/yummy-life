@@ -1,0 +1,11 @@
+/**
+ *
+ * User
+ *
+ **/
+
+class User {
+	construct() {
+		
+	}
+}
